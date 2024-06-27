@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import Link from "next/link";
 
 interface Post {
   id: number;
@@ -48,6 +48,8 @@ const View = () => {
         </i>
         <hr />
         <p className="text-2xl my-4 px-4">{post.content}</p>
+        <hr />
+        <Link href='/board'>나가기</Link>
       </div>
     )
   );
