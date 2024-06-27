@@ -47,17 +47,22 @@ const Board = () => {
 
   return (
     <div>
+      <Link href="/write">글 쓰기</Link>
       {posts.map((item) => (
         <>
-          <div key={item.id} onClick={()=>{viewPost(item.id)}}>
-            <h1>{item.title}</h1>
+          <div
+            key={item.id}
+            onClick={() => {
+              viewPost(item.id);
+            }}
+          >
+            <h1 className="text-xl font-extrabold">{item.title}</h1>
             <p>{item.author}</p>
             <i>{new Date(item.createdAt).toLocaleDateString()}</i>
           </div>
           <hr />
         </>
       ))}
-      <Link href="/write">글 쓰기</Link>
     </div>
   );
 };

@@ -41,6 +41,7 @@ const View = () => {
   return (
     post && (
       <div key={post.id} className="flex flex-col pd">
+        <Link href="/board">나가기</Link>
         <h1 className="text-5xl my-4 text-center">{post.title}</h1>
         <p className="text-center">{post.author}</p>
         <i className="text-center">
@@ -49,7 +50,6 @@ const View = () => {
         <hr />
         <p className="text-2xl my-4 px-4">{post.content}</p>
         <hr />
-        <Link href='/board'>나가기</Link>
       </div>
     )
   );

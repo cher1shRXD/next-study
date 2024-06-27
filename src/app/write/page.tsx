@@ -42,6 +42,7 @@ export default function Write() {
 
   return (
     <div className="flex flex-col align-middle justify-evenly w-1/2 h-64 mx-auto">
+      <Link href="/board">나가기</Link>
       <input
         type="text"
         placeholder="제목"
@@ -59,8 +60,9 @@ export default function Write() {
         ref={content}
         className="border-b outline-none resize-none h-20"
       ></textarea>
-      <button onClick={submit} className="">게시</button>
-      <Link href="/board">나가기</Link>
+      <button onClick={submit} className="">
+        게시
+      </button>
     </div>
   );
 }
