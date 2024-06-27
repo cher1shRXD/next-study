@@ -7,6 +7,7 @@ export default function Home() {
     <>
       <h1>대소나무숲</h1>
       <Link href='/write'>글 쓰기</Link>
+      <br />
       <Link href='/board'>글 보기</Link>
     </>
   );
