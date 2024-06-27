@@ -16,6 +16,14 @@ const View = () => {
   const [post, setPost] = useState<Post | null>(null);
   const param = useSearchParams();
   const postId = param.get("id");
+  const [userId, setUserId] = useState<string>();
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
 
   useEffect(() => {
     console.log(postId);
@@ -50,7 +58,7 @@ const View = () => {
         <Link href="/board" className="mr-4">
           나가기
         </Link>
-        {!localStorage.getItem("userId") ? (
+        {!userId ? (
           <Link href="/login" className="mr-4">
             로그인
           </Link>

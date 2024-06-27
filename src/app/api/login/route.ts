@@ -34,6 +34,8 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    console.log(hashSHA256(password));
+
     if (hashSHA256(password)!=user.password) {
       console.log(hashSHA256(password));
       console.log(user.password);

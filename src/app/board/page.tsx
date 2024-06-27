@@ -13,6 +13,14 @@ interface Post {
 
 const Board = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [userId, setUserId] = useState<string>();
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
 
   const getPosts = async () => {
     try {
@@ -55,7 +63,7 @@ const Board = () => {
       <Link href="/write" className="mr-4">
         글 쓰기
       </Link>
-      {!localStorage.getItem("userId") ? (
+      {!userId ? (
         <Link href="/login" className="mr-4">
           로그인
         </Link>
