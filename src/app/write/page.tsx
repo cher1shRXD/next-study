@@ -21,6 +21,10 @@ export default function Write() {
             title: title.current.value,
             content: content.current.value,
             author: author.current.value,
+          },{
+            headers : {
+              userId : Number(localStorage.getItem('userId')),
+            }
           })
           .then((response) => {
             alert(response.data.message);
@@ -32,7 +36,10 @@ export default function Write() {
             }
           })
           .catch((err) => {
-            console.log(err);
+            if(err.response.status == 401) {
+              alert('로그인 후 이용해 주세요');
+              window.location.href = '/login';
+            }
           });
       } else {
         alert("모든 입력칸을 채워주세요");
@@ -40,9 +47,24 @@ export default function Write() {
     }
   };
 
+  const logOut = () => {
+    alert("로그아웃 되었습니다.");
+    localStorage.removeItem("userId");
+    window.location.href = "/";
+  };
+
   return (
     <>
-      <Link href="/board">나가기</Link>
+      <Link href="/board" className="mr-4">
+        나가기
+      </Link>
+      {!localStorage.getItem("userId") ? (
+        <Link href="/login" className="mr-4">
+          로그인
+        </Link>
+      ) : (
+        <span onClick={logOut}>로그아웃</span>
+      )}
       <div className="flex flex-col justify-center w-1/2 h-96 mx-auto">
         <input
           type="text"

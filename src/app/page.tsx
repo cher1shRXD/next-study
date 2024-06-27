@@ -9,6 +9,8 @@ export default function Home() {
       <Link href='/write'>글 쓰기</Link>
       <br />
       <Link href='/board'>글 보기</Link>
+      <br />
+      <Link href='/login'>로그인</Link>
     </>
   );
 }

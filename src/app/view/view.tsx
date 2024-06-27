@@ -37,11 +37,26 @@ const View = () => {
     }
   }, []);
 
+  const logOut = () => {
+    alert("로그아웃 되었습니다.");
+    localStorage.removeItem("userId");
+    window.location.href = "/";
+  };
+
 
   return (
     post && (
       <div key={post.id} className="flex flex-col">
-        <Link href="/board">나가기</Link>
+        <Link href="/board" className="mr-4">
+          나가기
+        </Link>
+        {!localStorage.getItem("userId") ? (
+          <Link href="/login" className="mr-4">
+            로그인
+          </Link>
+        ) : (
+          <span onClick={logOut}>로그아웃</span>
+        )}
         <h1 className="text-4xl my-4 text-center">{post.title}</h1>
         <p className="text-center">{post.author}</p>
         <i className="text-center">

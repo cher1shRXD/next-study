@@ -41,13 +41,29 @@ const Board = () => {
   }
 
   const viewPost = (param:number) => {
-    console.log(param);
     window.location.href = `/view?id=${param}`
+  }
+
+  const logOut = () => {
+    alert('로그아웃 되었습니다.');
+    localStorage.removeItem('userId');
+    window.location.href = '/'
   }
 
   return (
     <div>
-      <Link href="/write">글 쓰기</Link>
+      <Link href="/write" className="mr-4">
+        글 쓰기
+      </Link>
+      {!localStorage.getItem("userId") ? (
+        <Link href="/login" className="mr-4">
+          로그인
+        </Link>
+      ) : (
+        <span onClick={logOut}>
+          로그아웃
+        </span>
+      )}
       {posts.map((item) => (
         <>
           <div
@@ -59,7 +75,9 @@ const Board = () => {
           >
             <h1 className="text-xl font-extrabold text-center">{item.title}</h1>
             <p className="text-center">{item.author}</p>
-            <p className="text-center">{new Date(item.createdAt).toLocaleDateString()}</p>
+            <p className="text-center">
+              {new Date(item.createdAt).toLocaleDateString()}
+            </p>
           </div>
           <hr />
         </>

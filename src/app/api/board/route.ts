@@ -8,6 +8,8 @@ export const POST = async (req: NextRequest) => {
     const prisma = new PrismaClient();
 
     const { title, content, author } = body;
+    const userId = Number(req.headers.get("userId"));
+  
     const createdAt = new Date();
 
     if (!title || !content || !author) {
@@ -17,20 +19,30 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const data = await prisma.board.create({
-      data: {
-        title,
-        content,
-        author,
-        createdAt,
-      },
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
     });
 
-    return NextResponse.json({
-      message: "게시가 성공적으로 완료되었습니다",
-      status: 200,
-      data,
-    });
+    if (!user) {
+      return NextResponse.json(
+        { message: "인증되지 않은 사용자입니다" },
+        { status: 401 }
+      );
+    }else{
+      const data = await prisma.board.create({
+        data: {
+          title,
+          content,
+          author,
+          createdAt,
+        },
+      });
+      return NextResponse.json({
+        message: "게시가 성공적으로 완료되었습니다",
+        status: 200,
+        data,
+      });
+    }
   } catch (error) {
     console.error("Error processing POST request:", error);
     return NextResponse.json(
