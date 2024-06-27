@@ -40,8 +40,9 @@ const Board = () => {
     );
   }
 
-  const viewPost = (pram:number) => {
-    window.location.href = `/view?id=${pram}`
+  const viewPost = (param:number) => {
+    console.log(param);
+    window.location.href = `/view?id=${param}`
   }
 
   return (

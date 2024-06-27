@@ -23,13 +23,9 @@ const View = () => {
 
   const getPostContent = async () => {
     try {
-      const res = await axios.get(`/api/board`, {
-        params: {
-          id: postId,
-        },
-      });
-      console.log(res.data.data[0]);
-      setPost(res.data.data[0]);
+      const res = await axios.get(`/api/board/${postId}`);
+      console.log(res);
+      setPost(res.data);
     } catch (error) {
       console.error("게시글을 가져오는 중 오류 발생:", error);
     }
@@ -39,7 +35,7 @@ const View = () => {
     if (postId) {
       getPostContent();
     }
-  }, [postId]);
+  }, []);
 
 
   return (
