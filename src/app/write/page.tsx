@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useRef } from "react";
+import Link from "next/link";
 
 export default function Write() {
   const title = useRef<HTMLInputElement>(null);
@@ -59,6 +60,7 @@ export default function Write() {
         className="border-b outline-none resize-none h-20"
       ></textarea>
       <button onClick={submit} className="">게시</button>
+      <Link href="/board">나가기</Link>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Post {
   id: number;
@@ -32,7 +33,12 @@ const Board = () => {
   }
 
   if (posts.length == 0) {
-    return <div>글이 없습니다...</div>;
+    return (
+      <>
+        <div>글이 없습니다...</div>
+        <Link href='/write'>글 쓰기</Link>
+      </>
+    );
   }
 
   return (
@@ -48,6 +54,7 @@ const Board = () => {
           <hr />
         </>
       ))}
+      <Link href="/write">글 쓰기</Link>
     </div>
   );
 };

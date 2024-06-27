@@ -43,7 +43,11 @@ export const POST = async (req: NextRequest) => {
 export const GET = async () => {
   try{
     const prisma = new PrismaClient();
-    const data = await prisma.board.findMany();
+    const data = await prisma.board.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
     return NextResponse.json({status:200,data})
   }catch (err) {
     return NextResponse.json({status:500,message:'네트워크 에러'});
