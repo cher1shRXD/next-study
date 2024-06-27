@@ -1,5 +1,4 @@
 "use client";
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -41,14 +40,17 @@ const Board = () => {
     );
   }
 
+  const viewPost = (pram:number) => {
+    window.location.href = `/view?id=${pram}`
+  }
+
   return (
     <div>
       {posts.map((item) => (
         <>
-          <div key={item.id}>
+          <div key={item.id} onClick={()=>{viewPost(item.id)}}>
             <h1>{item.title}</h1>
             <p>{item.author}</p>
-            <p>{item.content}</p>
             <i>{new Date(item.createdAt).toLocaleDateString()}</i>
           </div>
           <hr />
