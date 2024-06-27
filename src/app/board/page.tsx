@@ -55,10 +55,11 @@ const Board = () => {
             onClick={() => {
               viewPost(item.id);
             }}
+            className="py-3"
           >
-            <h1 className="text-xl font-extrabold">{item.title}</h1>
-            <p>{item.author}</p>
-            <i>{new Date(item.createdAt).toLocaleDateString()}</i>
+            <h1 className="text-xl font-extrabold text-center">{item.title}</h1>
+            <p className="text-center">{item.author}</p>
+            <p className="text-center">{new Date(item.createdAt).toLocaleDateString()}</p>
           </div>
           <hr />
         </>
