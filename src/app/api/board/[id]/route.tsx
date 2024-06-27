@@ -11,5 +11,5 @@ export async function GET(req:NextRequest ,{ params }: { params: { id: number } 
     where: { id: requestedId },
   });
 
-  return NextResponse.json(post);
+  return post;
 }

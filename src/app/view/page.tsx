@@ -1,7 +1,8 @@
-'use client'
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 interface Post {
   id: number;
@@ -11,14 +12,14 @@ interface Post {
   createdAt: string;
 }
 
-const Board = () => {
-  const [posts, setPosts] = useState<Post[]>([]); 
+const View = () => {
+  const [post, setPost] = useState<Post | null>(null);
   const param = useSearchParams();
   const postId = param.get("id");
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(postId);
-  },[])
+  }, [postId]);
 
   const getPostContent = async () => {
     try {
@@ -27,10 +28,10 @@ const Board = () => {
           id: postId,
         },
       });
-      console.log(res)
-      setPosts(res.data.data);
+      console.log(res.data.data[0]);
+      setPost(res.data.data[0]);
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      console.error("게시글을 가져오는 중 오류 발생:", error);
     }
   };
 
@@ -38,24 +39,27 @@ const Board = () => {
     if (postId) {
       getPostContent();
     }
-  }, []);
+  }, [postId]);
+
+  const Fallback = () => {
+    return <>placeholder</>;
+  }
 
   return (
-    <div>
-      {posts.map((item) => (
-        <div key={item.id} className="flex flex-col pd">
-          <h1 className="text-5xl my-4 text-center">{item.title}</h1>
-          <p className="text-center">{item.author}</p>
+    <Suspense fallback={<Fallback />}>
+      {post && (
+        <div key={post.id} className="flex flex-col pd">
+          <h1 className="text-5xl my-4 text-center">{post.title}</h1>
+          <p className="text-center">{post.author}</p>
           <i className="text-center">
-            {item.createdAt && new Date(item.createdAt).toLocaleDateString()}
+            {post.createdAt && new Date(post.createdAt).toLocaleDateString()}
           </i>
           <hr />
-          <p className="text-2xl my-4 px-4">{item.content}</p>
+          <p className="text-2xl my-4 px-4">{post.content}</p>
         </div>
-      ))}
-      <hr />
-    </div>
+      )}
+    </Suspense>
   );
 };
 
-export default Board;
+export default View;
