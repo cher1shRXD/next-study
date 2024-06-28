@@ -1,13 +1,27 @@
 'use client'
-import Link from 'next/link';
-import React, { useRef } from 'react'
-import { createHash, hash } from 'crypto';
+import React, { useRef,useState, useEffect } from 'react'
+import { createHash } from 'crypto';
 import axios from 'axios';
 
 const Login = () => {
 
   const userId = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+  const [authId, setAuthId] = useState<string>();
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setAuthId(storedUserId);
+    }
+  }, []);
+
+  useEffect(()=>{
+    if(authId != undefined) {
+      location.href = '/board';
+    }
+  },[authId]);
+
 
   function hashSHA256(input: string): string {
     const hash = createHash("sha256");
@@ -27,7 +41,12 @@ const Login = () => {
         }
       ).catch(
         err => {
-          console.log(err);
+          if(err.response.status == 401) {
+            alert('비밀번호가 올바르지 않습니다.');
+          }
+          if(err.response.status == 404) {
+            alert('유저를 찾을 수 없습니다.')
+          }
         }
       );
     }

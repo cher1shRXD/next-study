@@ -42,16 +42,20 @@ const View = () => {
   return (
     post && (
       <div key={post.id} className="flex flex-col w-withSidebar ml-72">
-        <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar">
-          자유게시판
-        </h1>
+        <div className="mb-10 text-center pt-10 bg-white fixed w-withSidebar flex justify-between px-5">
+          <Link href='/board' className="text-sm">{"<"} 뒤로가기</Link>
+          <h1 className="font-Cafe24Shiningstar text-4xl">자유게시판</h1>
+        </div>
         <h1 className="text-4xl my-4 text-center mt-24">{post.title}</h1>
         <p className="text-center">작성자: {post.author}</p>
         <i className="text-center">
           {post.createdAt && new Date(post.createdAt).toLocaleDateString()}
         </i>
         <hr />
-        <p className="text-2xl my-4 px-4 text-center">{post.content}</p>
+        <p
+          className="text-2xl my-4 px-4 text-center"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        ></p>
         <hr />
       </div>
     )

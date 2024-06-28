@@ -1,5 +1,6 @@
 "use client";
 import axios, { AxiosError } from "axios";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function Write() {
@@ -23,16 +24,20 @@ export default function Write() {
         window.location.href = "/login";
       } else {
         if (
-          title.current.value !== "" &&
-          content.current.value !== "" &&
-          author.current.value !== ""
+          title.current.value.trim() !== "" &&
+          content.current.value.trim() !== "" &&
+          author.current.value.trim() !== ""
         ) {
           try {
+            const formattedContent = content.current.value.replace(
+              /\n/g,
+              "<br>"
+            );
             const response = await axios.post(
               "/api/board",
               {
                 title: title.current.value,
-                content: content.current.value,
+                content: formattedContent,
                 author: author.current.value,
               },
               {
@@ -46,7 +51,7 @@ export default function Write() {
             content.current.value = "";
             author.current.value = "";
             window.location.href = "/board";
-          } catch (err:any) {
+          } catch (err: any) {
             if (err.response.status === 401) {
               alert("로그인 후 이용해 주세요");
               window.location.href = "/login";
@@ -59,18 +64,16 @@ export default function Write() {
     }
   };
 
-  const logOut = () => {
-    alert("로그아웃 되었습니다.");
-    localStorage.removeItem("userId");
-    window.location.href = "/";
-  };
 
   return (
     <div className="w-withSidebar ml-72 h-screen flex items-center">
-      <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar top-0">
-        글쓰기
-      </h1>
-      <div className="flex flex-col justify-start max-w-700 w-full h-96 px-10 mx-auto py-10">
+      <div className="mb-10 text-center pt-10 bg-white fixed w-withSidebar flex justify-between px-5 top-0">
+        <Link href="/board" className="text-sm">
+          {"<"} 뒤로가기
+        </Link>
+        <h1 className="font-Cafe24Shiningstar text-4xl">글쓰기</h1>
+      </div>
+      <div className="flex flex-col justify-start max-w-700 w-full h-128 px-10 mx-auto py-10">
         <input
           type="text"
           placeholder="제목"
@@ -86,7 +89,7 @@ export default function Write() {
         <textarea
           placeholder="내용"
           ref={content}
-          className="border-b outline-none resize-none h-20 my-3 text-2xl"
+          className="border-b outline-none resize-none h-52 my-3 text-2xl"
         ></textarea>
         <button onClick={submit} className="my-3 text-2xl">
           게시
