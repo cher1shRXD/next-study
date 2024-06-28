@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Header from "@/components/header";
 
 interface Post {
   id: number;
@@ -47,9 +48,7 @@ const Board = () => {
 
   return (
     <div className="w-withSidebar ml-72">
-      <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar">
-        자유게시판
-      </h1>
+      <Header pageTitle="자유게시판"/>
       <div className="pt-20">
         {posts.map((item) => (
           <div key={item.id}>

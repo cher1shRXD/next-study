@@ -3,6 +3,7 @@ import React, { useRef,useState, useEffect } from 'react'
 import { createHash } from 'crypto';
 import axios from 'axios';
 import Link from 'next/link';
+import Header from '@/components/header';
 
 const Login = () => {
 
@@ -56,12 +57,7 @@ const Login = () => {
 
   return (
     <div className="w-withSidebar ml-72 h-screen flex flex-col justify-center">
-      <div className="mb-10 text-center pt-10 bg-white fixed w-withSidebar flex justify-between px-5">
-        <Link href="/board" className="text-sm">
-          {"<"} 뒤로가기
-        </Link>
-        <h1 className="font-Cafe24Shiningstar text-4xl">자유게시판</h1>
-      </div>
+      <Header pageTitle='로그인'/> 
       <div className="flex flex-col justify-center max-w-700 w-full h-96 mx-auto px-10">
         <input
           type="text"
