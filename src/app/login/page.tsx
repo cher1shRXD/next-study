@@ -47,7 +47,7 @@ const Login = () => {
           className="border-b outline-none my-3 text-2xl"
         />
         <input
-          type="text"
+          type="password"
           placeholder="비밀번호"
           ref={password}
           className="border-b outline-none my-3 text-2xl"
