@@ -28,13 +28,13 @@ export const POST = async (req: NextRequest) => {
     });
 
     if (!user) {
+      console.log(hashSHA256(password));
       return NextResponse.json(
         { message: "유저 정보를 찾을 수 없습니다" },
         { status: 404 }
       );
     }
 
-    console.log(hashSHA256(password));
 
     if (hashSHA256(password)!=user.password) {
       console.log(hashSHA256(password));
@@ -43,12 +43,17 @@ export const POST = async (req: NextRequest) => {
         { message: "비밀번호가 일치하지 않습니다" },
         { status: 401 }
       );
+    }else{
+      console.log(hashSHA256(password))
+      console.log(user.password);
     }
+
+
 
     return NextResponse.json({
       message: "로그인 성공",
       status: 200,
-      data:{id:user.id,stId:user.stId},
+      data:user,
     });
   } catch (error) {
     console.error("Error processing POST request:", error);

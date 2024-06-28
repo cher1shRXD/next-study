@@ -35,11 +35,11 @@ const Login = () => {
 
 
   return (
-    <>
-      <Link href="/board" className="mr-4">
-        나가기
-      </Link>
-      <div className="flex flex-col justify-center w-1/2 h-96 mx-auto">
+    <div className="w-withSidebar ml-72 h-screen flex flex-col justify-center">
+      <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar top-0">
+        로그인
+      </h1>
+      <div className="flex flex-col justify-center max-w-700 w-full h-96 mx-auto px-10">
         <input
           type="text"
           placeholder="학번"
@@ -47,7 +47,7 @@ const Login = () => {
           className="border-b outline-none my-3 text-2xl"
         />
         <input
-          type="password"
+          type="text"
           placeholder="비밀번호"
           ref={password}
           className="border-b outline-none my-3 text-2xl"
@@ -56,7 +56,7 @@ const Login = () => {
           로그인
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

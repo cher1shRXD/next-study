@@ -16,14 +16,6 @@ const View = () => {
   const [post, setPost] = useState<Post | null>(null);
   const param = useSearchParams();
   const postId = param.get("id");
-  const [userId, setUserId] = useState<string>();
-
-  useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
-  }, []);
 
   useEffect(() => {
     console.log(postId);
@@ -45,28 +37,16 @@ const View = () => {
     }
   }, []);
 
-  const logOut = () => {
-    alert("로그아웃 되었습니다.");
-    localStorage.removeItem("userId");
-    window.location.href = "/";
-  };
 
 
   return (
     post && (
-      <div key={post.id} className="flex flex-col">
-        <Link href="/board" className="mr-4">
-          나가기
-        </Link>
-        {!userId ? (
-          <Link href="/login" className="mr-4">
-            로그인
-          </Link>
-        ) : (
-          <span onClick={logOut}>로그아웃</span>
-        )}
-        <h1 className="text-4xl my-4 text-center">{post.title}</h1>
-        <p className="text-center">{post.author}</p>
+      <div key={post.id} className="flex flex-col w-withSidebar ml-72">
+        <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar">
+          자유게시판
+        </h1>
+        <h1 className="text-4xl my-4 text-center mt-24">{post.title}</h1>
+        <p className="text-center">작성자: {post.author}</p>
         <i className="text-center">
           {post.createdAt && new Date(post.createdAt).toLocaleDateString()}
         </i>

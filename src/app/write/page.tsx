@@ -72,39 +72,32 @@ export default function Write() {
   };
 
   return (
-    <>
-      <Link href="/board" className="mr-4">
-        나가기
-      </Link>
-      {!userId ? (
-        <Link href="/login" className="mr-4">
-          로그인
-        </Link>
-      ) : (
-        <span onClick={logOut}>로그아웃</span>
-      )}
-      <div className="flex flex-col justify-center w-1/2 h-96 mx-auto">
+    <div className="w-withSidebar ml-72 h-screen flex items-center">
+      <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar top-0">
+        글쓰기
+      </h1>
+      <div className="flex flex-col justify-start max-w-700 w-full h-96 px-10 mx-auto py-10">
         <input
           type="text"
           placeholder="제목"
           ref={title}
-          className="border-b outline-none my-3"
+          className="border-b outline-none my-3 text-2xl"
         />
         <input
           type="text"
           placeholder="작성자"
           ref={author}
-          className="border-b outline-none my-3"
+          className="border-b outline-none my-3 text-2xl"
         />
         <textarea
           placeholder="내용"
           ref={content}
-          className="border-b outline-none resize-none h-20 my-3"
+          className="border-b outline-none resize-none h-20 my-3 text-2xl"
         ></textarea>
-        <button onClick={submit} className="my-3">
+        <button onClick={submit} className="my-3 text-2xl">
           게시
         </button>
       </div>
-    </>
+    </div>
   );
 }

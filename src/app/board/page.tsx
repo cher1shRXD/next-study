@@ -13,14 +13,6 @@ interface Post {
 
 const Board = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [userId, setUserId] = useState<string>();
-
-  useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
-  }, []);
 
   const getPosts = async () => {
     try {
@@ -52,44 +44,32 @@ const Board = () => {
     window.location.href = `/view?id=${param}`
   }
 
-  const logOut = () => {
-    alert('로그아웃 되었습니다.');
-    localStorage.removeItem('userId');
-    window.location.href = '/'
-  }
 
   return (
-    <div>
-      <Link href="/write" className="mr-4">
-        글 쓰기
-      </Link>
-      {!userId ? (
-        <Link href="/login" className="mr-4">
-          로그인
-        </Link>
-      ) : (
-        <span onClick={logOut}>
-          로그아웃
-        </span>
-      )}
-      {posts.map((item) => (
-        <>
-          <div
-            key={item.id}
-            onClick={() => {
-              viewPost(item.id);
-            }}
-            className="py-3"
-          >
-            <h1 className="text-xl font-extrabold text-center">{item.title}</h1>
-            <p className="text-center">{item.author}</p>
-            <p className="text-center">
-              {new Date(item.createdAt).toLocaleDateString()}
-            </p>
-          </div>
-          <hr />
-        </>
-      ))}
+    <div className="w-withSidebar ml-72">
+      <h1 className="mb-10 text-center pt-10 font-Cafe24Shiningstar text-3xl bg-white fixed w-withSidebar">
+        자유게시판
+      </h1>
+      <div className="pt-20">
+        {posts.map((item) => (
+          <>
+            <div
+              key={item.id}
+              onClick={() => {
+                viewPost(item.id);
+              }}
+              className="py-3 px-7"
+            >
+              <h1 className="text-xl font-extrabold">{item.title}</h1>
+              <p>작성자: {item.author}</p>
+              <p className="text-end">
+                {new Date(item.createdAt).toLocaleDateString()}
+              </p>
+            </div>
+            <hr />
+          </>
+        ))}
+      </div>
     </div>
   );
 };
