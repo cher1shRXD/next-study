@@ -1,4 +1,5 @@
 "use client";
+import Header from "@/components/header";
 import axios, { AxiosError } from "axios";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -67,12 +68,7 @@ export default function Write() {
 
   return (
     <div className="w-withSidebar ml-72 h-screen flex items-center">
-      <div className="mb-10 text-center pt-10 bg-white fixed w-withSidebar flex justify-between px-5 top-0">
-        <Link href="/board" className="text-sm">
-          {"<"} 뒤로가기
-        </Link>
-        <h1 className="font-Cafe24Shiningstar text-4xl">글쓰기</h1>
-      </div>
+      <Header pageTitle="글쓰기"/>
       <div className="flex flex-col justify-start max-w-700 w-full h-128 px-10 mx-auto py-10">
         <input
           type="text"

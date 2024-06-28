@@ -1,12 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { usePathname } from "next/navigation";
 import Link from 'next/link';
 
 const SideBar = () => {
 
-  const pathname = usePathname();
 
   const [userId, setUserId] = useState<string>();
 
@@ -23,9 +21,6 @@ const SideBar = () => {
     window.location.href = "/";
   };
 
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
   return (
     <div className="w-72 h-screen border-r z-50 fixed bg-white flex flex-col items-center py-5">
       <Link href="/" className="font-Cafe24Shiningstar text-6xl cursor-pointer">

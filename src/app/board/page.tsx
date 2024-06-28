@@ -52,7 +52,7 @@ const Board = () => {
       </h1>
       <div className="pt-20">
         {posts.map((item) => (
-          <>
+          <div key={item.id}>
             <div
               key={item.id}
               onClick={() => {
@@ -67,7 +67,7 @@ const Board = () => {
               </p>
             </div>
             <hr />
-          </>
+          </div>
         ))}
       </div>
     </div>
