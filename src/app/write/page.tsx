@@ -1,36 +1,34 @@
 "use client";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 
 export default function Write() {
   const title = useRef<HTMLInputElement>(null);
   const content = useRef<HTMLTextAreaElement>(null);
   const author = useRef<HTMLInputElement>(null);
 
-  const [userId,setUserId] = useState<string>();
+  const [userId, setUserId] = useState<string>();
 
-  useEffect(()=>{
+  useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       setUserId(storedUserId);
     }
-  },[]);
-
+  }, []);
 
   const submit = async () => {
     if (title.current && content.current && author.current) {
-      if(!userId) {
-        alert('로그인 후 이용해주세요');
-        window.location.href = '/login';
-      }else{
+      if (!userId) {
+        alert("로그인 후 이용해주세요");
+        window.location.href = "/login";
+      } else {
         if (
-          title.current.value.replace(" ", "") != "" &&
-          content.current.value.replace(" ", "") != "" &&
-          author.current.value.replace(" ", "") != ""
+          title.current.value !== "" &&
+          content.current.value !== "" &&
+          author.current.value !== ""
         ) {
-          await axios
-            .post(
+          try {
+            const response = await axios.post(
               "/api/board",
               {
                 title: title.current.value,
@@ -42,22 +40,18 @@ export default function Write() {
                   userId: Number(userId),
                 },
               }
-            )
-            .then((response) => {
-              alert(response.data.message);
-              if (title.current && content.current && author.current) {
-                title.current.value = "";
-                content.current.value = "";
-                author.current.value = "";
-                window.location.href = "/board";
-              }
-            })
-            .catch((err) => {
-              if (err.response.status == 401) {
-                alert("로그인 후 이용해 주세요");
-                window.location.href = "/login";
-              }
-            });
+            );
+            alert(response.data.message);
+            title.current.value = "";
+            content.current.value = "";
+            author.current.value = "";
+            window.location.href = "/board";
+          } catch (err:any) {
+            if (err.response.status === 401) {
+              alert("로그인 후 이용해 주세요");
+              window.location.href = "/login";
+            }
+          }
         } else {
           alert("모든 입력칸을 채워주세요");
         }
