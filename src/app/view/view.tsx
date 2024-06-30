@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 
 interface Post {
   id: number;
@@ -16,7 +16,6 @@ const View = () => {
   const [post, setPost] = useState<Post | null>(null);
   const param = useSearchParams();
   const postId = param.get("id");
-
 
   const getPostContent = async () => {
     try {
@@ -33,12 +32,10 @@ const View = () => {
     }
   }, []);
 
-
-
   return (
     post && (
       <div key={post.id} className="flex flex-col w-withSidebar ml-72">
-        <Header pageTitle="자유게시판"/>
+        <Header pageTitle="자유게시판" />
         <h1 className="text-4xl my-4 text-center mt-24">{post.title}</h1>
         <p className="text-center">작성자: {post.author}</p>
         <i className="text-center">

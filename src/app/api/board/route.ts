@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest) => {
     const prisma = new PrismaClient();
 
     const { title, content, author } = body;
-    const userId = Number(req.headers.get("userId"));
+    const userId = +req.headers.get("userId")!;
   
     const createdAt = new Date();
 

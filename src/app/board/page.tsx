@@ -1,8 +1,9 @@
 "use client";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 
 interface Post {
   id: number;
@@ -29,26 +30,25 @@ const Board = () => {
   }, []);
 
   if (!Array.isArray(posts)) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   if (posts.length == 0) {
     return (
       <>
         <div>글이 없습니다...</div>
-        <Link href='/write'>글 쓰기</Link>
+        <Link href="/write">글 쓰기</Link>
       </>
     );
   }
 
-  const viewPost = (param:number) => {
-    window.location.href = `/view?id=${param}`
-  }
-
+  const viewPost = (param: number) => {
+    window.location.href = `/view?id=${param}`;
+  };
 
   return (
     <div className="w-withSidebar ml-72">
-      <Header pageTitle="자유게시판"/>
+      <Header pageTitle="자유게시판" />
       <div className="pt-20">
         {posts.map((item) => (
           <div key={item.id}>

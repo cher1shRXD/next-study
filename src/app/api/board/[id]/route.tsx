@@ -8,14 +8,14 @@ export async function GET(req: NextRequest) {
     const url = new URL(req.url);
     const postId = url.pathname.split("/").pop();
 
-    if (!postId || isNaN(Number(postId))) {
+    if (!postId || isNaN(+postId)) {
       return NextResponse.json(
         { error: "유효하지 않은 요청입니다." },
         { status: 400 }
       );
     }
 
-    const requestedId = Number(postId);
+    const requestedId = +postId;
     console.log(`Requested ID: ${requestedId}`);
 
     const post = await prisma.board.findUnique({

@@ -1,7 +1,6 @@
 "use client";
-import Header from "@/components/header";
-import axios, { AxiosError } from "axios";
-import Link from "next/link";
+import Header from "@/components/Header";
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
 export default function Write() {
@@ -10,6 +9,8 @@ export default function Write() {
   const author = useRef<HTMLInputElement>(null);
 
   const [userId, setUserId] = useState<string>();
+
+  const [loading, setLoading] = useState<boolean>();
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -30,6 +31,7 @@ export default function Write() {
           author.current.value.trim() !== ""
         ) {
           try {
+            setLoading(true);
             const formattedContent = content.current.value.replace(
               /\n/g,
               "<br>"
@@ -43,7 +45,7 @@ export default function Write() {
               },
               {
                 headers: {
-                  userId: Number(userId),
+                  userId: +userId,
                 },
               }
             );
@@ -58,6 +60,7 @@ export default function Write() {
               window.location.href = "/login";
             }
           }
+          setLoading(false);
         } else {
           alert("모든 입력칸을 채워주세요");
         }
@@ -65,10 +68,9 @@ export default function Write() {
     }
   };
 
-
   return (
     <div className="w-withSidebar ml-72 h-screen flex items-center">
-      <Header pageTitle="글쓰기"/>
+      <Header pageTitle="글쓰기" />
       <div className="flex flex-col justify-start max-w-700 w-full h-128 px-10 mx-auto py-10">
         <input
           type="text"
@@ -87,8 +89,8 @@ export default function Write() {
           ref={content}
           className="border-b outline-none resize-none h-52 my-3 text-2xl"
         ></textarea>
-        <button onClick={submit} className="my-3 text-2xl">
-          게시
+        <button onClick={submit} className="my-3 text-2xl" disabled={loading}>
+          {!loading ? '게시' : '게시중...'}
         </button>
       </div>
     </div>

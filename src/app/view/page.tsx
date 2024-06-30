@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react'
-import View from './view'
+import React, { Suspense } from "react";
+import View from "./view";
 
 const viewPage = () => {
   return (
     <Suspense>
       <View />
     </Suspense>
-  )
-}
+  );
+};
 
-export default viewPage
+export default viewPage;
