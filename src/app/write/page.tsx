@@ -1,5 +1,5 @@
 "use client";
-import Header from "../../components/Header";
+import Header from "../components/Header";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 

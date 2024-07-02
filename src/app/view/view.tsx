@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Header from "../../components/Header";
+import Header from "../components/Header";
 
 interface Post {
   id: number;
