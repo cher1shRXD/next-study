@@ -6,11 +6,13 @@ module.exports = {
       height: {
         100: "28rem",
         128: '32rem',
-        700: '70rem'
+        700: '70rem',
+        300: '30rem'
       },
       width: {
         700: "70rem",
-        withSidebar: 'calc(100vw - 18rem)'
+        withSidebar: 'calc(100vw - 18rem)',
+        300: '30rem'
       },
       maxWidth: {
         700: "70rem",

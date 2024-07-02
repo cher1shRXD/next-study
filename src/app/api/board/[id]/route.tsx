@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import corsMiddleware from "@/app/libs/corsMiddleware";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, res:NextResponse) {
+
+  await corsMiddleware(req, res);
+
   const prisma = new PrismaClient();
 
   try {
