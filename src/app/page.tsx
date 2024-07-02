@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-withSidebar ml-72 min-h-screen flex items-center justify-center">
+    <div className="w-screen 2xl:w-withSidebar 2xl:ml-72 ml-0 min-h-screen flex items-center justify-center">
       <div className="w-1/2 h-100 border flex flex-col justify-evenly items-center py-4 pb-10">
         <h1 className="font-Cafe24Shiningstar text-7xl mb-20 box-border">
           대소나무숲

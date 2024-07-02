@@ -8,7 +8,7 @@ const Header = (props:{pageTitle:string}) => {
 
 
   return (
-    <div className="mb-10 text-center pt-10 bg-white fixed w-withSidebar flex justify-between px-5 top-0">
+    <div className="mb-10 text-center pt-10 bg-white fixed w-screen 2xl:w-withSidebar flex justify-between px-5 top-0">
       <span className="text-sm cursor-pointer" onClick={()=>{router.back()}}>
         {"<"} 뒤로가기
       </span>

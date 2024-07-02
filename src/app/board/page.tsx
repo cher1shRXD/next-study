@@ -47,7 +47,7 @@ const Board = () => {
   };
 
   return (
-    <div className="w-withSidebar ml-72">
+    <div className="w-screen 2xl:w-withSidebar 2xl:ml-72 ml-0">
       <Header pageTitle="자유게시판" />
       <div className="pt-20">
         {posts.map((item) => (

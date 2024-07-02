@@ -22,7 +22,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="w-72 h-screen border-r z-50 fixed bg-white flex flex-col items-center py-5">
+    <div className="w-72 2xl:left-0 -left-72 h-screen border-r z-50 fixed bg-white flex flex-col items-center py-5">
       <Link href="/" className="font-Cafe24Shiningstar text-6xl cursor-pointer">
         대소나무숲
       </Link>
