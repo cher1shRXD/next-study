@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createHash } from "crypto";
 import axios from "axios";
-import Header from "@/components/Header";
+import Header from "../../components/Header";
 
 const Login = () => {
   const userId = useRef<HTMLInputElement>(null);
