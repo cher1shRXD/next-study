@@ -1,9 +1,7 @@
-import corsMiddleware from "@/app/libs/corsMiddleware";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-export const POST = async (req: NextRequest,res:NextResponse) => {
-  await corsMiddleware(req, res);
+export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
 
@@ -55,6 +53,7 @@ export const POST = async (req: NextRequest,res:NextResponse) => {
 };
 
 export const GET = async () => {
+
   try{
     const prisma = new PrismaClient();
     const data = await prisma.board.findMany({
