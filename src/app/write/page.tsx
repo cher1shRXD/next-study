@@ -69,7 +69,7 @@ export default function Write() {
   };
 
   return (
-    <div className="w-screen 2xl:w-withSidebar 2xl:ml-72 ml-0 h-screen flex items-center">
+    <div className="w-withSidebar ml-72 h-screen flex items-center">
       <Header pageTitle="글쓰기" />
       <div className="flex flex-col justify-start max-w-700 w-full h-128 px-10 mx-auto py-10">
         <input

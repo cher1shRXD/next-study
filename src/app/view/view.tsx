@@ -36,7 +36,7 @@ const View = () => {
     post && (
       <div
         key={post.id}
-        className="flex flex-col w-screen 2xl:w-withSidebar 2xl:ml-72 ml-0"
+        className="flex flex-col w-withSidebar ml-72"
       >
         <Header pageTitle="자유게시판" />
         <h1 className="text-4xl my-4 text-center mt-24">{post.title}</h1>

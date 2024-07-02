@@ -55,7 +55,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen 2xl:w-withSidebar 2xl:ml-72 ml-0 h-screen flex flex-col justify-center">
+    <div className="w-withSidebar ml-72 h-screen flex flex-col justify-center">
       <Header pageTitle="로그인" />
       <div className="flex flex-col justify-center max-w-700 w-full h-96 mx-auto px-10">
         <input
