@@ -1,10 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
-import corsMiddleware from "@/app/libs/corsMiddleware";
 
-export const POST = async (req: NextRequest,res:NextResponse) => {
-  await corsMiddleware(req, res);
+export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
 
